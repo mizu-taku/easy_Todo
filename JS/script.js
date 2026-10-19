@@ -1,0 +1,26 @@
+// 1. HTMLの要素（部品）を取得する
+const inputElement = document.getElementById('todo-input');
+const addButton = document.getElementById('add-button');
+const todoList = document.getElementById('todo-list');
+
+// 2. 「追加」ボタンがクリックされたときの処理を設定する
+addButton.addEventListener('click', function() {
+
+  // 3. 入力欄に入っている文字を取得する
+  const taskText = inputElement.value;
+
+  // もし入力欄が空っぽなら、何もせずにここで処理を終わる
+  if (taskText === '') {
+    return;
+  }
+
+  // 4. 新しい <li> 要素（タスクの枠）をJavaScriptで作る
+  const newlistItem = document.createElement('li');
+  newListItem.textContent = taskText; // <li>の中身を入力された文字にする
+
+  // 5. 作った <li> を <ul>（リスト）の中に追加する
+  todoList.appendChild(newListItem);
+
+  // 6. 次のタスクを入力しやすいように、入力欄を空っぽに戻す
+  inputElement.value = '';
+});
