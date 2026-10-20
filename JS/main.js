@@ -15,8 +15,23 @@ addButton.addEventListener('click', function() {
   }
 
   // 4. 新しい <li> 要素（タスクの枠）をJavaScriptで作る
-  const newlistItem = document.createElement('li');
+  const newListItem = document.createElement('li');
   newListItem.textContent = taskText; // <li>の中身を入力された文字にする
+  //タスクをクリックしたら取り消し線にする
+  newListItem.addEventListener('click' , () => {
+    newListItem.classList.toggle('completed');
+  });
+
+  // --- 削除ボタンを作る処理 ---
+  const deleteButton = document.createElement('button');
+  deleteButton.textContent = '削除';
+
+  // 削除ボタンがクリックされたら、リストからそのタスク(li)を消す
+  deleteButton.addEventListener('click' , () => {
+    todoList.removeChild(newListItem);
+  });
+  // タスク(li)の右側に、削除ボタンを追加する
+  newListItem.appendChild(deleteButton);
 
   // 5. 作った <li> を <ul>（リスト）の中に追加する
   todoList.appendChild(newListItem);
